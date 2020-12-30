@@ -15,3 +15,21 @@ export default class MarkScript {
     this._generated += "```\n";
   }
 }
+
+class ListBase<T> {
+  _contents: any;
+
+  constructor(arr: string[]);
+  constructor(nList: T);
+  constructor(contents: any) {
+    if (contents instanceof ListBase) {
+      this._contents = contents;
+    } else {
+
+    }
+  }
+}
+
+export class NumberingList extends ListBase<NumberingList> {}
+
+export class CommonList extends ListBase<CommonList> {}
