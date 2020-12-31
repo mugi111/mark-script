@@ -5,28 +5,38 @@ export default class MarkScript {
     this._generated = "";
   }
 
-  text = (body: string) => {
+  addText = (body: string) => {
     this._generated += `${body}  \n`;
   }
 
-  code = (body: string) => {
+  addCode = (body: string) => {
     this._generated += "```\n";
-    this._generated += `${body}`;
+    this._generated += `${body}\n`;
     this._generated += "```\n";
+  }
+
+  addList = (elem: ListBase<NumberingList|CommonList>) => {
+    this._addList(elem);
+  }
+
+  private _addList = (cList: ListBase<NumberingList|CommonList>, indent: number = 0) => {
+    for(const e in cList.arr) {
+      this._generated += "\t".repeat(indent);
+      this._generated += `- ${e}\n`;
+    }
+    if(cList.c != null) {
+      this._addList(cList.c, indent++);
+    }
   }
 }
 
 class ListBase<T> {
-  _contents: any;
+  arr: string[];
+  c: T;
 
-  constructor(arr: string[]);
-  constructor(nList: T);
-  constructor(contents: any) {
-    if (contents instanceof ListBase) {
-      this._contents = contents;
-    } else {
-
-    }
+  constructor(arr: string[], nList: T = null) {
+    this.arr = arr;
+    this.c = nList;
   }
 }
 
