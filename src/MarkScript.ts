@@ -26,6 +26,10 @@ export default class MarkScript {
     this._generated += "```\n";
   }
 
+  addLink = (text: string, url: string) => {
+    this._generated += `[${text}](${url})`;
+  }
+
   addList = (elem: ListBase<NumberingList|CommonList>) => {
     this._addList(elem);
   }
