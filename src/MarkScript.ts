@@ -17,7 +17,7 @@ export default class MarkScript {
   addHead = (text: string, level: number) => {
     level = level < 1 ? 1 : level;
     level = 6 < level ? 6 : level;
-    this._generated += `${"#".repeat(level)} ${text}  \n`;
+    this._generated += `${"#".repeat(level)} ${text}\n`;
   }
 
   addCode = (body: string) => {
