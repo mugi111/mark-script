@@ -28,12 +28,20 @@ export default class MarkScript {
     let title: string = "";
     let sep: string = "";
     let column: string = "";
-    for(const obj of objs) {
+    let tmp: string[][] = [];
+    objs.map((obj) => {
       title += `| ${Object.keys(obj)[0]} `;
       sep += "|---";
-    }
+      tmp.push(Object.values(obj)[0]);
+    });
+    const mTmp = tmp.reduce((m, e) => m.length < e.length ? e : m);
+    mTmp.map((_, i) => {
+      tmp.map((e) => column += e.length < i ? "|  " : `| ${e[i]} `);
+      column += "|\n";
+    });
     title += "|\n";
     sep += "|\n";
+    this._generated += title + sep + column;
   }
 
   private _addList = (cList: ListBase<NumberingList|CommonList>, indent: number = 0) => {
