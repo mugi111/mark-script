@@ -54,6 +54,10 @@ export default class MarkScript {
     this._generated += title + sep + column;
   }
 
+  output = (): string => {
+    return this._generated;
+  }
+
   private _addList = (cList: ListBase<NumberingList|CommonList>, indent: number = 0) => {
     for(const e in cList.arr) {
       this._generated += "\t".repeat(indent);
