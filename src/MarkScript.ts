@@ -60,11 +60,10 @@ export default class MarkScript {
 
   private _addList = (cList: ListBase<NumberingList|CommonList>, indent: number = 0) => {
     for(const e of cList.arr) {
-      this._generated += "\t".repeat(indent);
-      this._generated += `- ${e}\n`;
+      this._generated += `${"\t".repeat(indent)}- ${e}\n`;
     }
     if(cList.c != null) {
-      this._addList(cList.c, indent++);
+      this._addList(cList.c, ++indent);
     }
   }
 }
