@@ -59,7 +59,7 @@ export default class MarkScript {
   }
 
   private _addList = (cList: ListBase<NumberingList|CommonList>, indent: number = 0) => {
-    for(const e in cList.arr) {
+    for(const e of cList.arr) {
       this._generated += "\t".repeat(indent);
       this._generated += `- ${e}\n`;
     }
@@ -71,9 +71,9 @@ export default class MarkScript {
 
 class ListBase<T> {
   arr: string[];
-  c: T;
+  c: T | null;
 
-  constructor(arr: string[], nList: T) {
+  constructor(arr: string[], nList: T | null = null) {
     this.arr = arr;
     this.c = nList;
   }
