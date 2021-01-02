@@ -2,6 +2,12 @@ export interface ITableObject {
   [key: string]: string[];
 }
 
+const enum TEXT_TYPES {
+  NORMAL,
+  ITARIC,
+  HIGHLIGHT,
+}
+
 export default class MarkScript {
   private _generated: string;
   
@@ -9,8 +15,19 @@ export default class MarkScript {
     this._generated = "";
   }
 
-  addText = (body: string) => {
-    this._generated += `${body}`;
+  addText = (body: string, type: TEXT_TYPES = TEXT_TYPES.NORMAL) => {
+    let s = "";
+    switch (type) {
+      case TEXT_TYPES.ITARIC:
+        s = "*";
+        break;
+      case TEXT_TYPES.HIGHLIGHT:
+        s = "***";
+        break;
+      default:
+        break;
+    }
+    this._generated += ` ${s}${body}${s} `;
   }
 
   addReturn = () => {
