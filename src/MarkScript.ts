@@ -3,14 +3,18 @@ export interface ITableObject {
 }
 
 export default class MarkScript {
-  _generated: string;
+  private _generated: string;
   
   constructor() {
     this._generated = "";
   }
 
   addText = (body: string) => {
-    this._generated += `${body}  \n`;
+    this._generated += `${body}`;
+  }
+
+  addReturn = () => {
+    this._generated += "  \n";
   }
 
   addHead = (text: string, level: number) => {
