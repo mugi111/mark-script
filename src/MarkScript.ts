@@ -29,6 +29,10 @@ export default class MarkScript {
     this._generated += `[${text}](${url})`;
   }
 
+  addHorizon = () => {
+    this._generated += "\n***\n";
+  }
+
   addList = (elem: ListBase<NumberingList|CommonList>) => {
     this._addList(elem);
   }
