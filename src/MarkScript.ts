@@ -2,7 +2,7 @@ export interface ITableObject {
   [key: string]: string[];
 }
 
-const enum TEXT_TYPES {
+export const enum TEXT_TYPES {
   NORMAL,
   ITARIC,
   HIGHLIGHT,
