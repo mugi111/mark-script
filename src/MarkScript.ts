@@ -41,6 +41,10 @@ export default class MarkScript {
   }
 
   addCode = (body: string) => {
+    this._generated += ` \`${body}\` `;
+  }
+
+  addCodeblock = (body: string) => {
     this._generated += "```\n";
     this._generated += `${body}\n`;
     this._generated += "```\n";
