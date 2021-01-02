@@ -1,4 +1,3 @@
-
 export interface ITableObject {
   [key: string]: string[];
 }
@@ -17,7 +16,7 @@ export default class MarkScript {
   addHead = (text: string, level: number) => {
     level = level < 1 ? 1 : level;
     level = 6 < level ? 6 : level;
-    this._generated += `${"#".repeat(level)} ${text}  \n`;
+    this._generated += `${"#".repeat(level)} ${text}\n`;
   }
 
   addCode = (body: string) => {
@@ -54,22 +53,25 @@ export default class MarkScript {
     this._generated += title + sep + column;
   }
 
-  private _addList = (cList: ListBase<NumberingList|CommonList>, indent: number = 0) => {
-    for(const e in cList.arr) {
-      this._generated += "\t".repeat(indent);
-      this._generated += `- ${e}\n`;
+  output = (): string => {
+    return this._generated;
+  }
+
+  private _addList = (cList: ListBase<CommonList|NumberingList>, indent: number = 0) => {
+    for(const e of cList.arr) {
+      this._generated += `${"\t".repeat(indent)}${(cList instanceof CommonList) ? "-" : (cList instanceof NumberingList) ? "*" : ""} ${e}\n`;
     }
     if(cList.c != null) {
-      this._addList(cList.c, indent++);
+      this._addList(cList.c, ++indent);
     }
   }
 }
 
 class ListBase<T> {
   arr: string[];
-  c: T;
+  c: T | null;
 
-  constructor(arr: string[], nList: T) {
+  constructor(arr: string[], nList: T | null = null) {
     this.arr = arr;
     this.c = nList;
   }
