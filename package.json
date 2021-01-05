@@ -1,5 +1,5 @@
 {
-  "name": "mark-script",
+  "name": "@mugi111/mark-script",
   "version": "0.0.1",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -8,6 +8,10 @@
   ],
   "repository": "https://github.com/mugi111/mark-script.git",
   "author": "Takumi Hirunuma <m.111_t.1230_nittc@outlook.com>",
+  "keywords": [
+    "markdown"
+  ],
+  "homepage": "https://mugi111.github.io/mark-script",
   "license": "MIT",
   "dependencies": {
     "@types/node": "^14.14.17",
