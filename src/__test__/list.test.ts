@@ -21,7 +21,7 @@ const nlist1: NumberingList = new NumberingList(["list1", "list2", "list3"]);
 
 test('should export numbering list', () => {
   m3.addList(nlist1);
-  expect(m3.output()).toBe("* list1\n* list2\n* list3\n");
+  expect(m3.output()).toBe("1. list1\n2. list2\n3. list3\n");
 });
 
 const m4 = new MarkScript();
@@ -29,6 +29,6 @@ const nlist2: NumberingList = new NumberingList(["plist1", "plist2", "plist3"], 
 
 test('should export nested numbering list', () => {
   m4.addList(nlist2);
-  expect(m4.output()).toBe("* plist1\n* plist2\n* plist3\n\t* list1\n\t* list2\n\t* list3\n");
+  expect(m4.output()).toBe("1. plist1\n2. plist2\n3. plist3\n\t1. list1\n\t2. list2\n\t3. list3\n");
 });
 

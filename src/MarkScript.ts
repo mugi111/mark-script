@@ -87,9 +87,9 @@ export default class MarkScript {
   }
 
   private _addList = (cList: ListBase<CommonList|NumberingList>, indent: number = 0) => {
-    for(const e of cList.arr) {
-      this._generated += `${"\t".repeat(indent)}${(cList instanceof CommonList) ? "-" : (cList instanceof NumberingList) ? "*" : ""} ${e}\n`;
-    }
+    cList.arr.forEach((e, i) => {
+      this._generated += `${"\t".repeat(indent)}${(cList instanceof CommonList) ? "-" : (cList instanceof NumberingList) ? `${i+1}.` : ""} ${e}\n`;
+    });
     if(cList.c != null) {
       this._addList(cList.c, ++indent);
     }
