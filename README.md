@@ -162,17 +162,17 @@ markScript.addReturn();
 ### List
 
 ```
-import MarkScript, { CommonList, NumberingList } from "mark-script";
+import MarkScript from "mark-script";
 
 .
 .
 .
 
-const xxxx = new CommonList(string[], CommonList?);
-markScript.addList(CommonList);
+const xxxx = [{ p: string, c: TList }, ... ];
+markScript.addList(TList[]);
 
-const xxxx = new NumberingList(string[], NumberingList?);
-markScript.addList(NumberingList);
+const xxxx = [{ p: string, c: TList }, ... ];
+markScript.addNumberedList(TList[]);
 ```
 
 #### Example
@@ -180,8 +180,12 @@ markScript.addList(NumberingList);
 ##### Bullet
 
 ```
-const clist = new Common1List(["list1", "list2", "list3"]);
-markScript.addList(clist);
+const clist: Array<TList> = [
+  { p: "list1" },
+  { p: "list2" },
+  { p: "list3" }
+];
+markScript.addBulletList(clist);
 ```
 
 ↓
@@ -193,9 +197,17 @@ markScript.addList(clist);
 ---
 
 ```
-const clist1 = new Common1List(["list1", "list2", "list3"]);
-const clist2 = new Common1List(["plist1", "plist2", "plist3"], clist1);
-markScript.addList(clist2);
+const clist1: Array<TList> = [
+  { p: "list1" },
+  { p: "list2" },
+  { p: "list3" }
+];
+const clist2: Array<TList> = [
+  { p: "plist1" },
+  { p: "plist2" },
+  { p: "plist3", c: clist1 }
+];
+markScript.addBulletList(clist2);
 ```
 
 ↓
@@ -206,6 +218,23 @@ markScript.addList(clist2);
   - list1
   - list2
   - list3
+
+##### Numbered
+
+```
+const clist: Array<TList> = [
+  { p: "list1" },
+  { p: "list2" },
+  { p: "list3" }
+];
+markScript.addBulletList(clist);
+```
+
+↓
+
+1. list1
+1. list2
+1. list3
 
 ### Link
 

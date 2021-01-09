@@ -101,9 +101,9 @@ export default class MarkScript {
   }
 
   private _addList = (cList: Array<TList>, indent: number = 0, listType: LIST_TYPES) => {
-    cList.forEach((e, i) => {
-      this._generated += `${"\t".repeat(indent)}${(listType === LIST_TYPES.BULLET) ? "-" : (listType === LIST_TYPES.NUMBERED) ? `${i+1}.` : ""} ${e.p}\n`;
-      if(e.c != null) {
+    cList.forEach((e, _) => {
+      this._generated += `${"\t".repeat(indent)}${(listType === LIST_TYPES.BULLET) ? "-" : (listType === LIST_TYPES.NUMBERED) ? `1.` : ""} ${e.p}\n`;
+      if(e.c != null && listType === LIST_TYPES.BULLET) {
         this._addList(e.c, ++indent, listType);
       }
     });

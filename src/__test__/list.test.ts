@@ -33,18 +33,5 @@ const nlist1: Array<TList> = [
 
 test('should export numbering list', () => {
   m3.addNumberedList(nlist1);
-  expect(m3.output()).toBe("1. list1\n2. list2\n3. list3\n");
+  expect(m3.output()).toBe("1. list1\n1. list2\n1. list3\n");
 });
-
-const m4 = new MarkScript();
-const nlist2: Array<TList> = [
-  { p: "plist1" }, 
-  { p: "plist2" }, 
-  { p: "plist3", c: nlist1 }
-];
-
-test('should export nested numbering list', () => {
-  m4.addNumberedList(nlist2);
-  expect(m4.output()).toBe("1. plist1\n2. plist2\n3. plist3\n\t1. list1\n\t2. list2\n\t3. list3\n");
-});
-
