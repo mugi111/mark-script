@@ -2,10 +2,20 @@ export interface ITableObject {
   [key: string]: string[];
 }
 
+export type TList = {
+  p: string;
+  c?: Array<TList>;
+}
+
 export const enum TEXT_TYPES {
   NORMAL,
   ITARIC,
   HIGHLIGHT,
+}
+
+const enum LIST_TYPES {
+  BULLET,
+  NUMBERED,
 }
 
 export default class MarkScript {
@@ -58,8 +68,12 @@ export default class MarkScript {
     this._generated += "\n***\n";
   }
 
-  addList = (elem: ListBase<NumberingList|CommonList>) => {
-    this._addList(elem);
+  addBulletList = (elem: Array<TList>) => {
+    this._addList(elem, 0, LIST_TYPES.BULLET);
+  }
+
+  addNumberedList = (elem: Array<TList>) => {
+    this._addList(elem, 0, LIST_TYPES.NUMBERED);
   }
 
   addTable = (objs: ITableObject[]) => {
@@ -86,26 +100,12 @@ export default class MarkScript {
     return this._generated;
   }
 
-  private _addList = (cList: ListBase<CommonList|NumberingList>, indent: number = 0) => {
-    cList.arr.forEach((e, i) => {
-      this._generated += `${"\t".repeat(indent)}${(cList instanceof CommonList) ? "-" : (cList instanceof NumberingList) ? `${i+1}.` : ""} ${e}\n`;
+  private _addList = (cList: Array<TList>, indent: number = 0, listType: LIST_TYPES) => {
+    cList.forEach((e, i) => {
+      this._generated += `${"\t".repeat(indent)}${(listType === LIST_TYPES.BULLET) ? "-" : (listType === LIST_TYPES.NUMBERED) ? `${i+1}.` : ""} ${e.p}\n`;
+      if(e.c != null) {
+        this._addList(e.c, ++indent, listType);
+      }
     });
-    if(cList.c != null) {
-      this._addList(cList.c, ++indent);
-    }
   }
 }
-
-class ListBase<T> {
-  arr: string[];
-  c: T | null;
-
-  constructor(arr: string[], nList: T | null = null) {
-    this.arr = arr;
-    this.c = nList;
-  }
-}
-
-export class NumberingList extends ListBase<NumberingList> {}
-
-export class CommonList extends ListBase<CommonList> {}

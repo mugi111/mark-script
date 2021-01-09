@@ -1,9 +1,8 @@
-import MarkScript, { NumberingList, CommonList, ITableObject, TEXT_TYPES } from './MarkScript';
+import MarkScript, { TList, ITableObject, TEXT_TYPES } from './MarkScript';
 
 export default MarkScript;
 export {
-  NumberingList,
-  CommonList,
+  TList,
   ITableObject,
   TEXT_TYPES
 };
