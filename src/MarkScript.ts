@@ -32,7 +32,7 @@ export default class MarkScript {
         s = "*";
         break;
       case TEXT_TYPES.HIGHLIGHT:
-        s = "***";
+        s = "**";
         break;
       default:
         break;
