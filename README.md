@@ -245,4 +245,4 @@ markScript.addLink("example", "http://example.com/");
 ```
 
 ↓  
-[example]("http://example.com/")
+[example](http://example.com/)
