@@ -20,6 +20,6 @@ const hMarkScript = new MarkScript();
 
 test('should export highlight text', () => {
   hMarkScript.addText(text, TEXT_TYPES.HIGHLIGHT);
-  expect(hMarkScript.output()).toBe(` ***${text}*** `);
+  expect(hMarkScript.output()).toBe(` **${text}** `);
 })
 
