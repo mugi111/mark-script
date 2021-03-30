@@ -1,4 +1,5 @@
 assets/
 jest.config.js
 .git
-src/__test__/
+src/
+dist/__test__
